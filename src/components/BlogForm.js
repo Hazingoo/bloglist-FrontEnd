@@ -16,31 +16,36 @@ const BlogForm = ({ handleSignIn }) => {
       <div>
         title:
         <input
+          id='title'
           value={title}
-          type="text"
-          name="title"
+          type='text'
+          name='title'
           onChange={({ target }) => setTitle(target.value)}
         />
       </div>
       <div>
         author:
         <input
+          id='author'
           value={author}
-          type="text"
-          name="author"
+          type='text'
+          name='author'
           onChange={({ target }) => setAuthor(target.value)}
         />
       </div>
       <div>
         url:
         <input
+          id='url'
           value={url}
-          type="text"
-          name="url"
+          type='text'
+          name='url'
           onChange={({ target }) => setUrl(target.value)}
         />
       </div>
-      <button type="submit">create</button>
+      <button id='submitButton' type='submit'>
+        create
+      </button>
     </form>
   )
 }

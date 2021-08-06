@@ -22,8 +22,13 @@ const Blog = ({ blog, blogs, setBlogs }) => {
         likes {likes} <br />
         <button
           onClick={async () => {
-            await blogService.addLikes(blog, likes)
-            setLikes(likes + 1)
+            try {
+              console.log('this part is working')
+              setLikes(likes + 1)
+              await blogService.addLikes(blog, likes)
+            } catch (err) {
+              console.error(err)
+            }
           }}
         >
           like

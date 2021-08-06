@@ -24,6 +24,7 @@ const App = () => {
   const [message, setMessage] = useState(null)
   useEffect(() => {
     blogService.getAll().then((blogs) => setBlogs(blogs))
+    console.log(blogs)
   }, [])
 
   useEffect(() => {
@@ -66,8 +67,8 @@ const App = () => {
             Username
             <input
               value={username}
-              type="text"
-              name="username"
+              type='text'
+              name='username'
               onChange={({ target }) => setUsername(target.value)}
             />
           </div>
@@ -75,12 +76,12 @@ const App = () => {
             Password
             <input
               value={password}
-              type="text"
-              name="password"
+              type='text'
+              name='password'
               onChange={({ target }) => setPassword(target.value)}
             />
           </div>
-          <button type="submit">login</button>
+          <button type='submit'>login</button>
         </form>
       </div>
     )
@@ -121,24 +122,26 @@ const App = () => {
           </button>
         </div>
         <h2>create new</h2>
-        <Togglable buttonLabel="create new blog" endButtonLabel={'cancel'}>
+        <Togglable buttonLabel='create new blog' endButtonLabel={'cancel'}>
           <BlogForm handleSignIn={handleSignIn} />
         </Togglable>
-        {blogs
-          .slice()
-          .sort((a, b) => a.likes - b.likes)
-          .map((blog) => {
-            if (blog.user.username === user.username) {
-              return (
-                <Blog
-                  key={blog.id}
-                  blog={blog}
-                  blogs={blogs}
-                  setBlogs={setBlogs}
-                />
-              )
-            }
-          })}
+        <div id='blogs'>
+          {blogs
+            .slice()
+            .sort((a, b) => a.likes - b.likes)
+            .map((blog) => {
+              if (blog && blog.user.username === user.username) {
+                return (
+                  <Blog
+                    key={blog.id}
+                    blog={blog}
+                    blogs={blogs}
+                    setBlogs={setBlogs}
+                  />
+                )
+              }
+            })}
+        </div>
       </div>
     )
   }
